@@ -10,10 +10,10 @@ camera = PiCamera()
 camera.resolution = (3264, 2448)
 
 def picture_capture(filename):
-    GPIO.output(18,GPIO.HIGH)
+    GPIO.output(18,GPIO.HIGH) # turn on LED lights
     camera.start_preview()
-    sleep(5)
-    camera.capture(filename)
+    sleep(5) # camera needs a few seconds to adjust levels
+    camera.capture(filename) # capture image to filename
     camera.stop_preview()
-    GPIO.output(18,GPIO.LOW)
+    GPIO.output(18,GPIO.LOW) # turn off LED lights
     return True
