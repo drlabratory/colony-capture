@@ -19,3 +19,18 @@ def picture_capture(filename):
     camera.stop_preview()
     GPIO.output(18,GPIO.LOW) # turn off LED lights
     return True
+
+counter = 1
+base_name = "test_growth"
+days = 1
+min_interval = 20
+
+# take a picture every [min_interval] minutes for [days] days
+total_number_pictures = days*24*60 / min_interval
+
+while counter < total_number_pictures:
+    file_name = "base_name_%04d.jpg" % (base_name, counter)
+    picture_capture(file_name)
+    sleep_interval = min_interval*60-5
+    sleep(sleep_interval)
+    counter = counter + 1
